@@ -41,7 +41,9 @@ function Navbar() {
     <AppBar position="static">
       <Container maxWidth="xl" className="navbar">
         <Toolbar disableGutters>
-          <ShoppingBagOutlined sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <ShoppingBagOutlined
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          />
           <Typography
             variant="h6"
             noWrap
@@ -90,10 +92,24 @@ function Navbar() {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center"><Link to="/" style={{ textDecoration: 'none', color: 'black' }}>Products</Link></Typography>
+                <Typography textAlign="center">
+                  <Link
+                    to="/"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    Products
+                  </Link>
+                </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center"><Link to="/shopping" style={{ textDecoration: 'none', color: 'black' }}>Shopping Cart</Link></Typography>
+                <Typography textAlign="center">
+                  <Link
+                    to="/shopping"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    Shopping Cart
+                  </Link>
+                </Typography>
               </MenuItem>
             </Menu>
           </Box>
@@ -123,13 +139,20 @@ function Navbar() {
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Products
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                Products
+              </Link>
             </Button>
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Shopping Cart
+              <Link
+                to="/shopping"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Shopping Cart
+              </Link>
             </Button>
           </Box>
 
