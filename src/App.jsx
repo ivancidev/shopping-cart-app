@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Root from "./routes/root"
 import ErrorPage from "./routes/error-page"
-import Products from "./pages/Products"
+import Products from "./pages/Products/Products"
 import Shopping from "./pages/Shopping"
+import ProductsProvider from "./context/ProductsProvider"
 
 function App() {
 
@@ -25,9 +26,9 @@ function App() {
   ])
 
   return (
-    <>
+    <ProductsProvider>
       <RouterProvider router={router} />
-    </>
+    </ProductsProvider>
   )
 }
 
