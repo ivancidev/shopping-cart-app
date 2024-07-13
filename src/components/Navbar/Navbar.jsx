@@ -135,34 +135,27 @@ function Navbar() {
             Shopping
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                Products
-              </Link>
-            </Button>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              <Link
-                to="/shopping"
-                style={{ textDecoration: "none", color: "white" }}
+            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
               >
-                Shopping Cart
-              </Link>
-            </Button>
+                Products
+              </Button>
+            </Link>
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
+          <Link
+            to="/shopping"
+            style={{ textDecoration: "none", color: "white" }}
+          >
             <IconButton aria-label="cart" color="inherit">
               <StyledBadge badgeContent={4} color="primary">
                 <ShoppingCartIcon />
               </StyledBadge>
             </IconButton>
-          </Box>
+          </Link>
+
+          <Box sx={{ flexGrow: 0 }}></Box>
         </Toolbar>
       </Container>
     </AppBar>
