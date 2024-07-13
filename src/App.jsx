@@ -1,12 +1,12 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Root from "./routes/root"
-import ErrorPage from "./routes/error-page"
-import Products from "./pages/Products/Products"
-import Shopping from "./pages/Shopping"
-import ProductsProvider from "./context/ProductsProvider"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./routes/root";
+import ErrorPage from "./routes/error-page";
+import Products from "./pages/Products/Products";
+import Shopping from "./pages/Shopping";
+import ProductsProvider from "./context/ProductsProvider";
+import ShoppingProvider from "./context/ShoppingProvider";
 
 function App() {
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -15,21 +15,23 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Products />
+          element: <Products />,
         },
         {
           path: "/shopping",
-          element: <Shopping />
-        }
-      ]
-    }
-  ])
+          element: <Shopping />,
+        },
+      ],
+    },
+  ]);
 
   return (
     <ProductsProvider>
-      <RouterProvider router={router} />
+      <ShoppingProvider>
+        <RouterProvider router={router} />
+      </ShoppingProvider>
     </ProductsProvider>
-  )
+  );
 }
 
-export default App
+export default App;
