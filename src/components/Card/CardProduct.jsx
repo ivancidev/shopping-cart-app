@@ -7,7 +7,7 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 
 
-export default function CardProduct({ title, price, image, description }) {
+export default function CardProduct({ title, price, image, description, handleAddToCart }) {
   return (
     <Card sx={{ maxWidth: 300 }}>
       <CardActionArea>
@@ -25,7 +25,7 @@ export default function CardProduct({ title, price, image, description }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button variant="contained" endIcon={<ShoppingCart />}>
+        <Button variant="contained" endIcon={<ShoppingCart />} onClick={handleAddToCart}>
           Add to cart
         </Button>
       </CardActions>
