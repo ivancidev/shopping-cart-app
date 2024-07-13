@@ -11,7 +11,8 @@ import { useContext } from "react";
 import { ShoppingContext } from "../../context/ShoppingContext";
 
 export default function TableProducts() {
-  const { listShopping } = useContext(ShoppingContext);
+  const { listShopping, removeShopping, decrementQuantity, incrementQuantity } =
+    useContext(ShoppingContext);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 600 }} aria-label="simple table">
@@ -32,7 +33,9 @@ export default function TableProducts() {
               <TableCell component="th" scope="row">
                 {product.id}
               </TableCell>
-              <TableCell align="center" style={{ width: "20%" }}>{product.title}</TableCell>
+              <TableCell align="center" style={{ width: "20%" }}>
+                {product.title}
+              </TableCell>
               <TableCell align="right">{product.price}</TableCell>
               <TableCell align="center">
                 <div
@@ -44,15 +47,27 @@ export default function TableProducts() {
                     margin: "0 auto",
                   }}
                 >
-                  <Button variant="outlined" style={{ marginRight: 10 }}>
+                  <Button
+                    variant="outlined"
+                    style={{ marginRight: 10 }}
+                    onClick={() => decrementQuantity(product.id)}
+                  >
                     -
                   </Button>
-                  {0}
+                  {product.quantity}
                   <div>
-                    <Button variant="contained" style={{ marginLeft: 10 }}>
+                    <Button
+                      variant="contained"
+                      style={{ marginLeft: 10 }}
+                      onClick={() => incrementQuantity(product.id)}
+                    >
                       +
                     </Button>
-                    <Button variant="contained" style={{ marginLeft: 10 }}>
+                    <Button
+                      variant="contained"
+                      style={{ marginLeft: 10 }}
+                      onClick={() => removeShopping(product.id)}
+                    >
                       <Delete />
                     </Button>
                   </div>
@@ -60,8 +75,19 @@ export default function TableProducts() {
               </TableCell>
             </TableRow>
           ))}
+          <TableRow>
+            <TableCell colSpan={2} align="right" sx={{ fontWeight: "bold" }}>
+              Total
+            </TableCell>
+            <TableCell align="right">{listShopping.reduce((a, b) => a + b.price * b.quantity, 0).toFixed(2)}</TableCell>
+          </TableRow>
         </TableBody>
       </Table>
+      <br />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+
+      <Button onClick={() => window.print()} variant="contained" style={{width: "100%"}}>Print</Button>
+      </div>
     </TableContainer>
   );
 }
