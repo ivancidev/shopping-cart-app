@@ -75,18 +75,18 @@ export default function TableProducts() {
               </TableCell>
             </TableRow>
           ))}
-          <TableRow>
-            <TableCell colSpan={2} align="right" sx={{ fontWeight: "bold" }}>
+          <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+            <TableCell colSpan={3} align="center" sx={{ fontWeight: "bold", fontSize: "18px" }}>
               Total
             </TableCell>
-            <TableCell align="right">{listShopping.reduce((a, b) => a + b.price * b.quantity, 0).toFixed(2)}</TableCell>
+            <TableCell align="left" sx={{ fontWeight: "bold", fontSize: "18px" }}>{listShopping.reduce((a, b) => a + b.price * b.quantity, 0).toFixed(2)}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
 
-      <Button onClick={() => window.print()} variant="contained" style={{width: "100%"}}>Print</Button>
+      <Button onClick={() => window.print()} variant="contained" style={{width: "100%"}} disabled={listShopping.length === 0}>Print</Button>
       </div>
     </TableContainer>
   );
