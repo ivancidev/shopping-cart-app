@@ -1,3 +1,11 @@
 .navbar {
     background-color: rgb(207, 13, 13);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 }

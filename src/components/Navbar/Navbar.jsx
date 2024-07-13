@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,9 +15,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { ShoppingBagOutlined } from "@mui/icons-material";
 import "./styles/navbar.css";
 import { Link } from "react-router-dom";
+import { ShoppingContext } from "../../context/ShoppingContext";
+import { useContext, useState } from "react";
 
 function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const { listShopping } = useContext(ShoppingContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -91,26 +93,11 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">
-                  <Link
-                    to="/"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    Products
-                  </Link>
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">
-                  <Link
-                    to="/shopping"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    Shopping Cart
-                  </Link>
-                </Typography>
-              </MenuItem>
+              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Products</Typography>
+                </MenuItem>
+              </Link>
             </Menu>
           </Box>
           <ShoppingBagOutlined
@@ -149,7 +136,7 @@ function Navbar() {
             style={{ textDecoration: "none", color: "white" }}
           >
             <IconButton aria-label="cart" color="inherit">
-              <StyledBadge badgeContent={4} color="primary">
+              <StyledBadge badgeContent={listShopping.length} color="primary">
                 <ShoppingCartIcon />
               </StyledBadge>
             </IconButton>
