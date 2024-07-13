@@ -12,12 +12,33 @@ export default function ShoppingProvider({ children }) {
         return [...state, action.payload];
       case "REMOVE_FROM_SHOPPING":
         return state.filter((item) => item.id !== action.payload);
+      case "DECREMENT_QUANTITY":
+        return state.map((item) => {
+          if (item.id === action.payload && item.quantity > 1) {
+            return {
+              ...item,
+              quantity: item.quantity - 1,
+            };
+          }
+          return item;
+        });
+      case "INCREMENT_QUANTITY":
+        return state.map((item) => {
+          if (item.id === action.payload) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+            };
+          }
+          return item;
+        });
       default:
         return state;
     }
   }
 
   const addShopping = (product) => {
+    product.quantity = 1;
     const action = {
       type: "ADD_TO_SHOPPING",
       payload: product,
@@ -25,8 +46,40 @@ export default function ShoppingProvider({ children }) {
     dispatch(action);
   };
 
+  const removeShopping = (id) => {
+    const action = {
+      type: "REMOVE_FROM_SHOPPING",
+      payload: id,
+    };
+    dispatch(action);
+  };
+
+  const decrementQuantity = (id) => {
+    const action = {
+      type: "DECREMENT_QUANTITY",
+      payload: id,
+    };
+    dispatch(action);
+  };
+
+  const incrementQuantity = (id) => {
+    const action = {
+      type: "INCREMENT_QUANTITY",
+      payload: id,
+    };
+    dispatch(action);
+  };
+
   return (
-    <ShoppingContext.Provider value={{ listShopping, addShopping }}>
+    <ShoppingContext.Provider
+      value={{
+        listShopping,
+        addShopping,
+        removeShopping,
+        decrementQuantity,
+        incrementQuantity,
+      }}
+    >
       {children}
     </ShoppingContext.Provider>
   );
