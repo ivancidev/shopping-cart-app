@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ProductsContext } from "./ProductsContext";
+import { fetchProductsApi } from "../services/fakeStoreApi";
 
 export default function ProductsProvider({ children }) {
   const [products, setProducts] = useState([]);
 
   const fetchProducts = async () => {
-    const response = await fetch("https://fakestoreapi.com/products");
-    const data = await response.json();
+    const data = await fetchProductsApi();
     setProducts(data);
   };
 
